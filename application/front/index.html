@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru-RU" class="respect-color-scheme-preference">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>TransTTE</title>
+	<link rel='stylesheet' id='tt1-dark-mode-css'  href='css/darkmode.css' media='all' />
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="icons/icon.png" sizes="192x192" />
+</head>
+<body>
+			<div id="map"></div>
+
+			<div class="buttons">
+				<div class="nav">
+					<input type = "button"  onclick="to_Abakan()" value = "Abakan" class="button button_nav to_abakan">
+					<input type = "button"  onclick="to_Omsk()" value = "Omsk" class="button button_nav to_abakan">
+				</div>
+				<div></div>
+				<div class="path_type">
+
+					<div class="shortest">
+						<div class="shortest_color"></div>
+						<input id="2" type = "button"  onclick="input2()" value = "shortest" class="button floating-button">
+					</div>
+					<div class="shortest">
+						<div class="pic_color"></div>
+						<input id="3" type = "button"  onclick="input3()" value = "picturesque" class="button floating-button" >
+					</div>
+					<div class="shortest">
+						<div class="hist_color"></div>
+						<input id="4" type = "button"  onclick="input4()" value = "historical" class="button floating-button" >
+					</div>
+					<div class="graphormer">
+						<div class="graphormer_color"></div>
+						<input id="6" type = "button"  onclick="input6()" value = "graphormer" class="button floating-button" >
+					</div>
+				</div>
+			</div>
+</body>
+<script src="https://api-maps.yandex.ru/2.1/?lang=en_UK&apikey=8c38b83d-4105-430e-814c-3a3ccc7f08ee" type="text/javascript"></script>
+<script src="js/index.js"></script>
+</html>

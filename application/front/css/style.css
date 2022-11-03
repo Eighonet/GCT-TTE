@@ -1,0 +1,106 @@
+html, body {
+    width:100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;}
+
+input, button, submit {
+    cursor: pointer;
+    border: none;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+#map {
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.buttons {
+    grid-gap: 10px;
+    top: 10px;
+    left: 400px;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 0.5fr 0.1fr 1fr;
+}
+
+.path_type {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.floating-button {
+    width: 100px;
+    background: white;
+}
+
+.nav {
+    bottom: 0px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.button_nav {
+    background: white;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.shortest {
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: 7px 1fr;
+}
+
+.shortest_color {
+    background-color: #d99571;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.graphormer {
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: 7px 1fr;
+}
+
+.graphormer_color {
+    background-color: #000000;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.pic_color {
+    background-color: #f881da;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.hist_color {
+    background-color: #edd35f;
+    border-radius: 2px 0px 0px 2px;
+}
+
+button:before{
+    width: 100%;
+    height: 100%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top:  -100%;
+    left: -100%;
+    background: #212121;
+    transition: all .5s;
+    z-index: -1;
+
+}
+
+.shortest:hover{
+    color: white;
+}
+#btn:hover:before{
+    top: 0;
+    left: 0;
+
+}
