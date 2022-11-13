@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,700");
+:root {
+  --text-color: #ececec;
+  --inverse-text-color: #252631;
+  --background-color: #1f2029;
+  --inverse-background-color: #fff;
+  --icon-background-color: #252631;
+  --brand-color-html5: #1f2029;
+  --brand-color-css3: #2196f3;
+  --brand-color-nodejs: #6cc24a;
+  --brand-color-npm: #cb3837;
+  --brand-color-sass: #c69;
+  --brand-color-angular: #b52e31;
+  --brand-color-ionic: #498AFF;
+}
+
+.github {
+  position: absolute;
+  margin: 20px;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 40px 40px;
+}
+.github li {
+  display: inline-flex;
+  margin: 1rem 2rem;
+}
+.github li:nth-child(1) a:hover i {
+  color: var(--brand-color-html5);
+}
+.github li:nth-child(2) a:hover i {
+  color: var(--brand-color-css3);
+}
+.github li:nth-child(3) a:hover i {
+  color: var(--brand-color-nodejs);
+}
+.github li:nth-child(4) a:hover i {
+  color: var(--brand-color-npm);
+}
+.github li:nth-child(5) a:hover i {
+  color: var(--brand-color-sass);
+}
+.github li:nth-child(6) a:hover i {
+  color: var(--brand-color-angular);
+}
+.github li:nth-child(7) a:hover i {
+  color: var(--brand-color-ionic);
+}
+.github li a {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: 0.5s ease all;
+}
+.github li a i {
+  display: flex;
+  font-size: 3rem;
+  color: var(--text-color);
+  z-index: 999;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: 0.5s ease all;
+}
+.github li a:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-color: var(--icon-background-color);
+  transform: scale3d(1, 1, 1);
+  transform-origin: 50% 50%;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: 0.25s ease-out;
+}
+.github li a:hover:after {
+  transform: scale3d(0, 0, 0);
+  transition: 0.25s ease-in;
+}
+.github li a:hover i {
+  color: var(--inverse-background-color);
+  transform: scale3d(1.5, 1.5, 1);
+}
+
+/*# sourceMappingURL=animation.css.map */

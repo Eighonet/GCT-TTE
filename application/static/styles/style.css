@@ -1,0 +1,115 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 70px 10fr;
+}
+
+#map {
+  height: 100%;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  z-index: 10;
+  background-color: #24252a;
+  font-family: "Delecta";
+  color: white;
+  box-shadow: 10px 6px 15px -6px #888;
+  justify-content: center;
+  align-content: center;
+}
+.panel .left {
+  padding-left: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.panel .center {
+  display: grid;
+  justify-content: center;
+}
+.panel .right {
+  padding-right: 40px;
+  display: grid;
+  grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr;
+}
+
+.outer {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.left > .outer {
+  display: grid;
+  align-content: center;
+  justify-content: left;
+}
+
+.text {
+  display: inline-block;
+  text-align: center;
+}
+
+.title {
+  cursor: default;
+  text-align: left;
+  font-size: 12pt;
+  font-family: "Delecta Medium";
+}
+
+.subtitle {
+  text-align: left;
+  font-size: 13pt;
+  font-family: "Delecta";
+}
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  width: 70px;
+  padding: 12px 12px;
+  border-radius: 25px;
+  text-align: center;
+  transition: 0.15s ease-in;
+}
+
+.button:hover {
+  display: inline-block;
+  cursor: pointer;
+  width: 70px;
+  padding: 12px 12px;
+  background-color: #0487a3;
+  border-radius: 25px;
+  text-align: center;
+  transition: 0.15s ease-in;
+}
+
+.about {
+  padding: 12px 18px;
+}
+
+.about:hover {
+  padding: 12px 18px;
+}
+
+.modal {
+  text-justify: inter-word;
+  font-family: "Delecta";
+  color: #24252a;
+}
+
+.modal-description {
+  font-size: 13pt;
+  padding: 20px 20px 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

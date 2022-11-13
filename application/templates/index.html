@@ -1,0 +1,81 @@
+<html>
+  <head>
+      <title>MTTE Demo</title>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <script>
+          const process = { env: {} };
+          process.env.GOOGLE_MAPS_API_KEY =
+              "AIzaSyC3hEvAq0Bg7hZbJ6HsbaNpKBGzJraad9U";
+      </script>
+
+      <link rel="stylesheet" type="text/css" href="../static/styles/style.css" />
+      <link rel="stylesheet" type="text/css" href="../static/styles/fonts.css" />
+      <link rel="stylesheet" href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" />
+      <link rel="stylesheet" type="text/css" href="../static/icons/animation.css" />
+      <script type="module" src="../static/js/script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+  <div class="panel">
+
+      <div class="left">
+          <div class="outer">
+              <div class="title text">MULTIMODAL TRAVEL TIME ESTIMATION</div>
+          </div>
+      </div>
+
+      <div class="center">
+          <div class="outer">
+              <div class="button about">About</div>
+          </div>
+      </div>
+
+      <div class="right">
+          <div></div>
+          <div class="outer">
+              <div class="button abakan">Abakan</div>
+          </div>
+          <div class="outer">
+              <div class="button omsk">Omsk</div>
+          </div>
+          <div class="outer">
+              <div class="button compare">Compare</div>
+          </div>
+          <div class="outer">
+              <div class="button clear">Clear</div>
+          </div>
+      </div>
+
+  </div>
+  <div id="map"></div>
+  <ul class="github">
+      <li>
+          <a href="https://github.com/Eighonet/MTTE">
+              <i class="icon ion-logo-github"></i>
+          </a>
+      </li>
+  </ul>
+  </body>
+  <script>
+      $(document).on('click', '.about', function(e) {
+			Swal.fire({
+                title: "<div class='modal modal-title'>MTTE Demo</div>",
+                icon: 'info',
+                showConfirmButton: true,
+                html: "<div class='modal modal-description'>This page provides access to the inference of MTTE transformer" +
+                    " and several additional models considered in the paper " +
+                    "<a href='https://arxiv.org'>'Multimodal Transformers Breaking Into Travel Time Estimation'</a>. " +
+                    "You can explore the predictions on the random " +
+                    "predefined routes with known ground truth (<b>Compare</b> button) or request ETA for your own " +
+                    "trajectories - just click on the map twice and see what happens!</div>",
+                confirmButtonText: 'Ok!',
+                confirmButtonColor: '#24252a'
+            })
+      });
+  </script>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3hEvAq0Bg7hZbJ6HsbaNpKBGzJraad9U&region=UK&language=en&callback=initMap&v=weekly"
+      defer>
+  </script>
+</html>
