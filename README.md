@@ -1,9 +1,9 @@
-# MTTE
+# GCT-TTE
 
 ![Pipeline_image](resources/transtte_pipeline_wh.png#gh-light-mode-only)
 ![Pipeline_image](resources/transtte_pipeline_bl.png#gh-dark-mode-only)
 
-Welcome to the official repo of the MTTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and dedicated application.
+Welcome to the official repo of the GCT-TTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and dedicated application.
 
 Vaagn Chopuran, Vladimir Mashurov, [Vadim Porvatov](https://www.researchgate.net/profile/Vadim-Porvatov), Arseny Ivanov, Ksenia Kuznetsova, [Natalia Semenova](https://www.researchgate.net/profile/Natalia-Semenova-7)
 
