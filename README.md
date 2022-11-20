@@ -52,7 +52,7 @@ We provide two datasets corresponding to the cities of Abakan and Omsk. For each
 
 </td></tr> </table>
 
-Provided data could be used for research purposes only. If you want to incorporate it in your study, please send request to semenova.bnl@gmail.com.
+Provided data could be used for research purposes only. If you want to incorporate it in your study, please send request to *anonymized placeholder*.
 
 # License
 
