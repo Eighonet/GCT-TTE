@@ -121,11 +121,11 @@ function initMap(callback) {
                 // Window with the predicted ETA
                 const infoWindow = new google.maps.InfoWindow({
                     content:
-                        'DeepIST: ' + Math.floor(predefined_routes[i]['preds']['deepist']).toString() + '<br>' +
-                        'DeepTTE: ' + Math.floor(predefined_routes[i]['preds']['deeptte']).toString() + '<br>' +
-                        'DeepI2T: ' + Math.floor(predefined_routes[i]['preds']['deepi2t']).toString() + '<br>' +
-                        'MTTE: ' + Math.floor(predefined_routes[i]['preds']['mtte']).toString() + '<br> <hr>' +
-                        '<b>Ground truth ETA:</b> ' + predefined_routes[i]['preds']['rta'].toString() + '<br>',
+                        'MURAT: ' + Math.floor(predefined_routes[i]['preds']['murat']).toString() + ' s<br>' +
+                        'WDR: ' + Math.floor(predefined_routes[i]['preds']['wdr']).toString() + ' s<br>' +
+                        'DeepI2T: ' + Math.floor(predefined_routes[i]['preds']['deepit2']).toString() + ' s<br>' +
+                        'GCT-TTE: ' + Math.floor(predefined_routes[i]['preds']['mtte']).toString() + ' s<br> <hr>' +
+                        '<b>Ground truth ETA:</b> ' + predefined_routes[i]['preds']['rta'].toString() + ' s<br>',
                     position: predefined_routes[i]['coords'][predefined_routes[i]['coords'].length -1],
                     maxWidth: 200
                 });
@@ -179,7 +179,7 @@ function initMap(callback) {
 
                 // Window with the predicted ETA
                 const infoWindow = new google.maps.InfoWindow({
-                    content: '<b>TTE:</b> ' + text['tte'].toString() + ' ',
+                    content: '<b>GCT-TTE:</b> ' + text['tte'].toString() + ' s',
                     position: text['coords'][text['coords'].length - 1],
                     maxWidth: 200
                 });
