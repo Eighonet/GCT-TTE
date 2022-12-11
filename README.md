@@ -5,17 +5,15 @@
 
 Welcome to the official repo of the GCT-TTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and dedicated application.
 
+*anonymized placeholder for the list of authors*
+
 You can access inference of our model at [gcttte.online](http://gctte.online)
 
 arXiv PDF: to be added
 
 # Prerequisites
 
-**Backend:**
-
-```
-
-```
+**Backend:** please use *application/requirements.txt* in order to compile the environemnt for application. 
 
 **Model:**
 
