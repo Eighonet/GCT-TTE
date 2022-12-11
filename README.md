@@ -43,10 +43,10 @@ We provide two datasets corresponding to the cities of Abakan and Omsk. For each
 
 | | Abakan | Omsk |
 |--|--|--|
-|Trips number|  119986 | 120000 |
-|Coverage| 0.535 |  0.392 |
-|Average time| 433.61 | 622.67 |
-|Average length| 3656.34 | 4268.72 |
+|Trips number|  121557| 767343 |
+|Coverage| 53.3% |  49.5% |
+|Average time| 427 sec | 608 sec |
+|Average length| 3604 m | 4216 m |
 
 </td></tr> </table>
 
