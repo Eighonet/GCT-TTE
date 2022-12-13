@@ -6,7 +6,7 @@ Welcome to the official repo of the GCT-TTE model -- transformer-based travel ti
 
 *anonymized placeholder for the list of authors*
 
-You can access inference of our model at [gcttte.online](http://gctte.online)
+You can access inference of our model at [gctte.online](http://gctte.online)
 
 arXiv PDF: to be added
 
