@@ -1,21 +1,18 @@
 # GCT-TTE
 
 ![Pipeline_image](resources/TTE_pipeline_rev2_w.png#gh-light-mode-only)
-![Pipeline_image](resources/TTE_pipeline_rev2_b.png#gh-dark-mode-only)
 
 Welcome to the official repo of the GCT-TTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and dedicated application.
 
-You can access inference of our model at [gcttte.online](http://gctte.online)
+*anonymized placeholder for the list of authors*
+
+You can access inference of our model at [gctte.online](http://gctte.online)
 
 arXiv PDF: to be added
 
 # Prerequisites
 
-**Backend:**
-
-```
-
-```
+**Backend:** please use *application/requirements.txt* in order to compile the environemnt for application. 
 
 **Model:**
 
@@ -45,10 +42,10 @@ We provide two datasets corresponding to the cities of Abakan and Omsk. For each
 
 | | Abakan | Omsk |
 |--|--|--|
-|Trips number|  119986 | 120000 |
-|Coverage| 0.535 |  0.392 |
-|Average time| 433.61 | 622.67 |
-|Average length| 3656.34 | 4268.72 |
+|Trips number|  121557| 767343 |
+|Coverage| 53.3% |  49.5% |
+|Average time| 427 sec | 608 sec |
+|Average length| 3604 m | 4216 m |
 
 </td></tr> </table>
 
