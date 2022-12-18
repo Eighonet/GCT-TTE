@@ -10,7 +10,7 @@ You can access the inference of our model at [gctte.online](http://gctte.online)
 
 arXiv PDF: to be added
 
-# Prerequisites
+# Prerequisites 
 
 **Backend:** please use *application/requirements.txt* in order to compile the environment for the application. 
 
