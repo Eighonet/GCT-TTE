@@ -16,9 +16,14 @@ arXiv PDF: to be added
 
 **Model:**
 
-```
+Experiments conducted with `CUDA` 10.1 installed. The `torch` of version 1.8.1 was used.  The following libraries must be comparable with the choosen `torch` and `CUDA` versions:
+- torch-cluster==1.6.0
+- torch-geometric==2.1.0.post1
+- torch-scatter==2.0.8
+- torch-sparse==0.6.12
+- torch-spline-conv==1.2.1
 
-```
+All other external libraries, which do not depend on `torch` and `CUDA` versions, mentioned in `/model/requirements.txt`.
 
 # Local test
 
