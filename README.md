@@ -14,20 +14,19 @@ arXiv PDF: to be added
 
 **Backend:** please use *application/requirements.txt* in order to compile the environment for the application. 
 
-**Model:**
-
-Experiments were conducted with `CUDA` 10.1 and `torch 1.8.1`. The following libraries must be compatible with this software setup:
-
+**Model:** the experiments were conducted with `CUDA 10.1` and `torch 1.8.1`. The following libraries must be compatible with this software setup:
+```
 - torch-cluster==1.6.0
 - torch-geometric==2.1.0.post1
 - torch-scatter==2.0.8
 - torch-sparse==0.6.12
 - torch-spline-conv==1.2.1
-
+```
 All other external libraries, which do not depend on `torch` and `CUDA` versions, are mentioned in `/model/requirements.txt`.
 
-# Local test
+# Local tests
 
+Launch instructions are provided in the `README` file of the `/model` directory.
 
 # Datasets
 
