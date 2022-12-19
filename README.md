@@ -2,7 +2,7 @@
 
 ![Pipeline_image](resources/TTE_pipeline_rev2_w.png#gh-light-mode-only)
 
-Welcome to the official repo of the GCT-TTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and dedicated application.
+Welcome to the official repo of the GCT-TTE model -- transformer-based travel time estimation algorithm. Here we present the source code of the pipeline and demo application.
 
 *anonymized placeholder for the list of authors*
 
