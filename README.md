@@ -8,7 +8,7 @@ Welcome to the official repo of the GCT-TTE model -- transformer-based travel ti
 
 You can access the inference of our model at [gctte.online](http://gctte.online)
 
-arXiv PDF: to be added
+arXiv PDF: https://arxiv.org/abs/2306.04324 
 
 # Prerequisites 
 
