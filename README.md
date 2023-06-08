@@ -69,4 +69,12 @@ If you have some questions about the code, you are welcome to open an issue, I w
 To be updated.
 
 ```
+@misc{mashurov2023gcttte,
+      title={GCT-TTE: Graph Convolutional Transformer for Travel Time Estimation}, 
+      author={Vladimir Mashurov and Vaagn Chopurian and Vadim Porvatov and Arseny Ivanov and Natalia Semenova},
+      year={2023},
+      eprint={2306.04324},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI}
+}
 ```
