@@ -19,6 +19,8 @@ from utils import train, test
 from dataset import DataSet
 from configs import *
 
+from statistics import mean
+
 
 parser = argparse.ArgumentParser(description="model parameters")
 parser.add_argument("-e", "--epoch", type=int, default=100, help="number of epochs")
@@ -36,7 +38,7 @@ parser.add_argument("--alpha-feat", type=float, default=0.1,
                     help="coefficient for features")
 parser.add_argument("--path-blind", default=True, action="store_false",
                     help="if we had only start and finish point")
-parser.add_argument("--kfold-filename", type=str, default="indexes_k8",
+parser.add_argument("--kfold-filename", type=str, default="indexes",
                     help="group name for wandb")
 parser.add_argument("--city", type=str, default="Abakan", help="city")
 parser.add_argument("--graph-layers", type=int, default=3, help="number of graph convolutional layers")
@@ -59,7 +61,6 @@ N_SPLIT = args.split_num_from_kfold
 BATCH_SIZE = args.batch_size
 DEVICE = torch.device("cuda:{}".format(args.num_device) if torch.cuda.is_available() else "cpu")
 OUTPUT_PATH = args.output_path
-GROUP_NAME = args.group_name
 ALPHA = args.alpha
 ALPHA_FEAT = args.alpha_feat
 PATH_BLIND = not args.path_blind
@@ -91,7 +92,11 @@ except:
     pass
 
 
-# load data
+# === load data ================================
+
+PATH_ABAKAN = "../../DATASETS/Abakan/"
+OMSK_ABAKAN = "../../DATASETS/Omsk/"
+
 if CITY == "Abakan":
     print("City is Abakan")
     print("Getting x data")
@@ -101,7 +106,7 @@ if CITY == "Abakan":
     y = pd.read_csv(os.path.join(PATH_ABAKAN, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npy"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_ABAKAN, "route_2_Tids.csv"))['0']
@@ -119,8 +124,8 @@ if CITY == "Abakan":
     print("Getting extra_features data")
     extra_features = pd.read_csv(os.path.join(PATH_ABAKAN, "extra_features.csv")).to_numpy()
     
-    print("Getting images") # Это уже готовые эмбеддинги
-    IMG_EMBS = os.path.join(PATH_ABAKAN, "IMG_EMBS.npz")
+    print("Getting images") # These are ready-made embeddings
+    IMG_EMBS = os.path.join(PATH_ABAKAN, "IMG_EMBS.npy")
     TENSORS = np.load(IMG_EMBS)
     TENSORS = torch.tensor(TENSORS, device=torch.device('cpu'))
 
@@ -134,7 +139,7 @@ elif CITY == "Omsk":
     y = pd.read_csv(os.path.join(PATH_OMSK, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npy"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_OMSK, "route_2_Tids.csv"))['0']
@@ -145,7 +150,6 @@ elif CITY == "Omsk":
     route_2_nodeIdSeq = pd.Series([stringToIntList(ids[1]) for ids in route_2_nodeIdSeq.iteritems()])
 
     print("Getting train_route_id_2_list data")
-    #train_route_id_2_list = pk.load(open('/home/jovyan/MTTE/Omsk_data/indexes_f.pkl', 'rb'))
     train_route_id_2_list = pk.load(open(os.path.join(PATH_OMSK, "indexes.pkl"), 'rb'))
 
     print("Getting extra_features data")
@@ -184,12 +188,13 @@ elif CITY == "Omsk":
         train_route_id_2_list[num_split]['valid'] = res_valid
         
     print("Getting images")
-    TENSORS = torch.zeros(47447, 3712)
+    TENSORS = torch.zeros(47447, 3712) # !!! you need to rewrite this if you want to make an experiment using images
     
-
+# === load data ================================
+    
 data = Data(
-    x=torch.tensor(x, dtype=torch.float), # признаковое описание
-    edge_index=torch.tensor(edge_index, dtype=torch.long), # транспонированный список ребер
+    x=torch.tensor(x, dtype=torch.float), # features
+    edge_index=torch.tensor(edge_index, dtype=torch.long), # transposed list of edges
 )
 data = data.to(DEVICE)
 
@@ -205,7 +210,8 @@ test_dataset = DataSet(targets=y, iter_2_id=np.array(train_route_id_2_list[N_SPL
                       route_2_nodeIdSeq=route_2_nodeIdSeq, route_2_Tids=route_Tids, extra_features=extra_features,
                       sequence_length=SEQ_LEN, path_blind=PATH_BLIND)
 
-# load model
+# === load the model ================================
+
 model = GCTTTE(data,
                model_hidden_size=HIDDEN_SIZE,
                n_graph_layers=GRAPH_LAYERS,
@@ -247,10 +253,20 @@ def test_run():
         val_loss_mae.append(l[1])
         val_loss_sr.append(l[2])
         val_loss_rmse.append(l[3])
+        
+    epoch_test_loss_mape = mean(val_loss_mape)
+    epoch_test_loss_mae  = mean(val_loss_mae)
+    epoch_test_loss_sr   = mean(val_loss_sr)
+    epoch_test_loss_rmse = mean(val_loss_rmse)
+    
+    print("MAPE", epoch_test_loss_mape)
+    print("MAE", epoch_test_loss_mae)
+    print("SR", epoch_test_loss_sr)
+    print("RMSE", epoch_test_loss_rmse)
 
     temp_dict["test/MAPE"] = epoch_test_loss_mape
-    temp_dict["test/MAE"] =  epoch_test_loss_mae
-    temp_dict["test/SR"] = epoch_test_loss_sr
+    temp_dict["test/MAE"]  = epoch_test_loss_mae
+    temp_dict["test/SR"]   = epoch_test_loss_sr
     temp_dict["test/RMSE"] = epoch_test_loss_rmse
 
     with open('output/{}/{}/test_{}_pathblind_{}_trEn{}_hid{}_graphL{}.pkl'.format(

@@ -94,7 +94,8 @@ except:
     pass
 
 
-# load data
+# === load data ================================
+
 if CITY == "Abakan":
     print("City is Abakan")
     print("Getting x data")
@@ -104,7 +105,7 @@ if CITY == "Abakan":
     y = pd.read_csv(os.path.join(PATH_ABAKAN, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npz"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_ABAKAN, "route_2_Tids.csv"))['0']
@@ -122,7 +123,7 @@ if CITY == "Abakan":
     print("Getting extra_features data")
     extra_features = pd.read_csv(os.path.join(PATH_ABAKAN, "extra_features.csv")).to_numpy()
     
-    print("Getting images") # Это уже готовые эмбеддинги
+    print("Getting images") # These are ready-made embeddings
     IMG_EMBS = os.path.join(PATH_ABAKAN, "IMG_EMBS.npz")
     TENSORS = np.load(IMG_EMBS)
     TENSORS = torch.tensor(TENSORS, device=torch.device('cpu'))
@@ -137,7 +138,7 @@ elif CITY == "Omsk":
     y = pd.read_csv(os.path.join(PATH_OMSK, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npz"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_OMSK, "route_2_Tids.csv"))['0']
@@ -148,7 +149,6 @@ elif CITY == "Omsk":
     route_2_nodeIdSeq = pd.Series([stringToIntList(ids[1]) for ids in route_2_nodeIdSeq.iteritems()])
 
     print("Getting train_route_id_2_list data")
-    #train_route_id_2_list = pk.load(open('/home/jovyan/MTTE/Omsk_data/indexes_f.pkl', 'rb'))
     train_route_id_2_list = pk.load(open(os.path.join(PATH_OMSK, "indexes.pkl"), 'rb'))
 
     print("Getting extra_features data")
@@ -191,8 +191,8 @@ elif CITY == "Omsk":
     
 
 data = Data(
-    x=torch.tensor(x, dtype=torch.float), # признаковое описание
-    edge_index=torch.tensor(edge_index, dtype=torch.long), # транспонированный список ребер
+    x=torch.tensor(x, dtype=torch.float), # features
+    edge_index=torch.tensor(edge_index, dtype=torch.long), # transposed list of edges
 )
 data = data.to(DEVICE)
 
@@ -208,7 +208,8 @@ test_dataset = DataSet(targets=y, iter_2_id=np.array(train_route_id_2_list[N_SPL
                       route_2_nodeIdSeq=route_2_nodeIdSeq, route_2_Tids=route_Tids, extra_features=extra_features,
                       sequence_length=SEQ_LEN, path_blind=PATH_BLIND)
 
-# load model
+# === load the model ================================
+
 model = GCTTTE(data,
                model_hidden_size=HIDDEN_SIZE,
                n_graph_layers=GRAPH_LAYERS,
