@@ -24,7 +24,19 @@ You can use the following commands to control the model settings:
 - `--num-heads` -- number of attention heads in transformer.
 - `--use-infomax` -- if it is set to 1/0 then deep graph infomax will be used/not used. Implementation: https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/nn/models/deep_graph_infomax.html 
 
+### Quick test quide
+
+1) Please, install PyTorch and PyTorch-Geometric in your environment;
+2) unzip the dataset;
+3) unzip the archive with pretrained GCT-TTE weights;
+4) check the paths' constants in `test.py`;
+5) launch test sctipt as `python test.py`, you can choose the training k-fold split via `-s <n>` option, where `n` is the split number.
+
+The metrics will appear after test prrocess bieng finished.
+
 # GCT-TTE dataset description
+
+To get the dataset, please contact the correspondent author at this email address _**semenova.bnl@gmail.com**_
 
 ## Training dataset
 
