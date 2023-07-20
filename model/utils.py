@@ -101,7 +101,7 @@ def test(model, device, data, graph_embed, labels, imgs_embed, extras, lengths):
     loss_sr = sr_loss(labels, output, one_value)
     loss_rmse = torch.sqrt(mse_fn(output, labels))
 
-    return loss_mape.item(), loss_mae.item(), loss_sr.item(), loss_rmse.item()
+    return loss_mape.item(), loss_mae.item(), loss_sr.item(), loss_rmse.item(), output
 
 
 criterion = torch.nn.L1Loss(reduce=False)
