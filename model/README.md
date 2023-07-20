@@ -28,7 +28,7 @@ You can use the following commands to control the model settings:
 
 1) Please, install PyTorch and PyTorch-Geometric in your environment;
 2) unzip the dataset;
-3) unzip the archive with pretrained GCT-TTE weights;
+3) unzip the archive with [pretrained GCT-TTE weights](https://sc.link/xnl8z); Ask _**semenova.bnl@gmail.com**_ if you will have any troubles with downloading.
 4) check the paths' constants in `test.py`;
 5) launch test sctipt as `python test.py`, you can choose the training k-fold split via `-s <n>` option, where `n` is the split number.
 
@@ -36,7 +36,7 @@ The metrics will appear after test prrocess bieng finished.
 
 Example for launching on Abakan:
 
-`python test.py --city Abakan --graph-input-size 73 -s 7 --batch-size 16`
+`python test.py --city Abakan --graph-input-size 73 -s 0 --batch-size 16`
 
 Example for launching on Omsk:
 
