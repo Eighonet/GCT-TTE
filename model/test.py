@@ -17,7 +17,6 @@ from utils import stringToIntList, stringToStrList, stringToFloatList
 from utils import get_padding_mask, corruption, pad_seq_fn, make_positional_encoding
 from utils import train, test
 from dataset import DataSet
-from configs import *
 
 from statistics import mean
 
