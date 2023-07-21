@@ -28,6 +28,7 @@ def stringToFloatList(string: str) -> list:
     return np.array(lst)
 
 # --- MODEL UTILS ----------
+
 def get_padding_mask(lengths):
     lengths = [i + 1 for i in lengths]
     res = []
@@ -50,8 +51,8 @@ def get_padding_mask(lengths, seq_len, device):
 def corruption(x, edge_index):
     return x[torch.randperm(x.size(0))], edge_index
 
-def pad_seq_fn(data): # функция для выравнивания последовательностей по максимальной длине
-    geo_seq, g_embs, labels, imgs_embed, extras, lenghths = zip(*data) # для варианта seq, target  
+def pad_seq_fn(data): # function for alignment of sequences along the maximum length
+    geo_seq, g_embs, labels, imgs_embed, extras, lenghths = zip(*data) # for the variant of [seq, target]  
     geo_seq = pad_sequence(geo_seq, batch_first=True, padding_value=PADDING_VALUE)
     g_embs = pad_sequence(g_embs, batch_first=True, padding_value=-1)
     labels = torch.stack([torch.tensor(label) for label in labels])
@@ -60,7 +61,7 @@ def pad_seq_fn(data): # функция для выравнивания посл�
         
     return geo_seq, torch.tensor(g_embs), labels, imgs_embed, extras, torch.tensor(lenghths)
 
-def make_positional_encoding(max_length, embedding_size): # Позиционное кодирование для трансформера
+def make_positional_encoding(max_length, embedding_size): # Positional coding for transformer
     time = np.pi * torch.arange(0, max_length).float()
     freq_dividers = torch.arange(1, embedding_size // 2 + 1).float()
     inputs = time[:, None] / freq_dividers[None, :]
@@ -100,7 +101,7 @@ def test(model, device, data, graph_embed, labels, imgs_embed, extras, lengths):
     loss_sr = sr_loss(labels, output, one_value)
     loss_rmse = torch.sqrt(mse_fn(output, labels))
 
-    return loss_mape.item(), loss_mae.item(), loss_sr.item(), loss_rmse.item()
+    return loss_mape.item(), loss_mae.item(), loss_sr.item(), loss_rmse.item(), output
 
 
 criterion = torch.nn.L1Loss(reduce=False)

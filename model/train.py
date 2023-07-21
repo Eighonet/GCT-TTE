@@ -94,7 +94,11 @@ except:
     pass
 
 
-# load data
+# === load data ================================
+
+PATH_ABAKAN = "../../DATASETS/Abakan/"
+OMSK_ABAKAN = "../../DATASETS/Omsk/"
+
 if CITY == "Abakan":
     print("City is Abakan")
     print("Getting x data")
@@ -104,7 +108,7 @@ if CITY == "Abakan":
     y = pd.read_csv(os.path.join(PATH_ABAKAN, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_ABAKAN, "edge_index.npy"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_ABAKAN, "route_2_Tids.csv"))['0']
@@ -122,8 +126,8 @@ if CITY == "Abakan":
     print("Getting extra_features data")
     extra_features = pd.read_csv(os.path.join(PATH_ABAKAN, "extra_features.csv")).to_numpy()
     
-    print("Getting images") # Это уже готовые эмбеддинги
-    IMG_EMBS = os.path.join(PATH_ABAKAN, "IMG_EMBS.npz")
+    print("Getting images") # These are ready-made embeddings
+    IMG_EMBS = os.path.join(PATH_ABAKAN, "IMG_EMBS.npy")
     TENSORS = np.load(IMG_EMBS)
     TENSORS = torch.tensor(TENSORS, device=torch.device('cpu'))
 
@@ -137,7 +141,7 @@ elif CITY == "Omsk":
     y = pd.read_csv(os.path.join(PATH_OMSK, "targets.csv")).to_numpy()
 
     print("Getting edge_index data")
-    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npz"), 'rb')) # Возможно, он тут не нужен
+    edge_index = np.load(open(os.path.join(PATH_OMSK, "edge_index.npy"), 'rb')) 
 
     print("Getting route_Tids data")
     route_Tids = pd.read_csv(os.path.join(PATH_OMSK, "route_2_Tids.csv"))['0']
@@ -148,7 +152,6 @@ elif CITY == "Omsk":
     route_2_nodeIdSeq = pd.Series([stringToIntList(ids[1]) for ids in route_2_nodeIdSeq.iteritems()])
 
     print("Getting train_route_id_2_list data")
-    #train_route_id_2_list = pk.load(open('/home/jovyan/MTTE/Omsk_data/indexes_f.pkl', 'rb'))
     train_route_id_2_list = pk.load(open(os.path.join(PATH_OMSK, "indexes.pkl"), 'rb'))
 
     print("Getting extra_features data")
@@ -187,12 +190,13 @@ elif CITY == "Omsk":
         train_route_id_2_list[num_split]['valid'] = res_valid
         
     print("Getting images")
-    TENSORS = torch.zeros(47447, 3712)
+    TENSORS = torch.zeros(47447, 3712) # !!! you need to rewrite this if you want to make an experiment using images
     
+# === load data ================================    
 
 data = Data(
-    x=torch.tensor(x, dtype=torch.float), # признаковое описание
-    edge_index=torch.tensor(edge_index, dtype=torch.long), # транспонированный список ребер
+    x=torch.tensor(x, dtype=torch.float), # features
+    edge_index=torch.tensor(edge_index, dtype=torch.long), # transposed list of edges
 )
 data = data.to(DEVICE)
 
@@ -208,7 +212,8 @@ test_dataset = DataSet(targets=y, iter_2_id=np.array(train_route_id_2_list[N_SPL
                       route_2_nodeIdSeq=route_2_nodeIdSeq, route_2_Tids=route_Tids, extra_features=extra_features,
                       sequence_length=SEQ_LEN, path_blind=PATH_BLIND)
 
-# load model
+# === load the model ================================
+
 model = GCTTTE(data,
                model_hidden_size=HIDDEN_SIZE,
                n_graph_layers=GRAPH_LAYERS,
@@ -293,13 +298,13 @@ def train_run():
         temp_dict["test/SR"] = epoch_test_loss_sr
         temp_dict["test/RMSE"] = epoch_test_loss_rmse
 
-        with open('output/{}/{}/best_res_{}_pathblind_{}_trEn{}_hid{}_graphL{}.pkl'.format(
+        with open('output/{}/{}/train_best_res_{}_pathblind_{}_trEn{}_hid{}_graphL{}.pkl'.format(
             OUTPUT_PATH, N_SPLIT, ALPHA, PATH_BLIND, TRANSFORMER_ENCODER_LAYERS, HIDDEN_SIZE, GRAPH_LAYERS), 'wb') as f:
             pk.dump(temp_dict, f)
         # save model
         if BEST_SCORE > stat.mean(val_loss_mae):
             BEST_SCORE = stat.mean(val_loss_mae)
-            torch.save(model.state_dict(), 'output/{}/{}/best_mae_model_alpha_{}_pathblind_{}_trEn{}_hid{}_graphL{}.pt'.format(
+            torch.save(model.state_dict(), 'output/{}/{}/train_best_mae_model_alpha_{}_pathblind_{}_trEn{}_hid{}_graphL{}.pt'.format(
                             OUTPUT_PATH, N_SPLIT, ALPHA, PATH_BLIND, TRANSFORMER_ENCODER_LAYERS, HIDDEN_SIZE, GRAPH_LAYERS)
                       )
     return stat.mean(val_loss_mape)

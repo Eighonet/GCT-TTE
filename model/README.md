@@ -24,7 +24,27 @@ You can use the following commands to control the model settings:
 - `--num-heads` -- number of attention heads in a transformer.
 - `--use-infomax` -- if it is set to 1/0, deep graph infomax will be used/not used. Implementation: https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/nn/models/deep_graph_infomax.html 
 
+### Quick test quide
+
+1) Please, install PyTorch and PyTorch-Geometric in your environment;
+2) unzip the dataset;
+3) unzip the archive with [pretrained GCT-TTE weights](https://sc.link/xnl8z); Ask _**semenova.bnl@gmail.com**_ if you will have any troubles with downloading.
+4) check the paths' constants in `test.py`;
+5) launch test sctipt as `python test.py`, you can choose the training k-fold split via `-s <n>` option, where `n` is the split number.
+
+The metrics will appear after test prrocess bieng finished.
+
+Example for launching on Abakan:
+
+`python test.py --city Abakan --graph-input-size 73 -s 0 --batch-size 16`
+
+Example for launching on Omsk:
+
+`python test.py --city Omsk -o Omsk --graph-input-size 100 -s 0 --batch-size 16`
+
 # GCT-TTE dataset description
+
+To get the dataset, please contact the correspondent author at this email address _**semenova.bnl@gmail.com**_
 
 ## Training dataset
 
@@ -48,6 +68,7 @@ To deal with version conflicts, we tried to avoid using of `pickle` module where
 ### Abakan data
 
 The dataset is compressed into `ABAKAN_TRAIN_DATA.tar.gz`:
+
 - `IMG_EMBS.npz`
 - `edge_index.npz`
 - `extra_features.csv`
@@ -72,6 +93,7 @@ Here is the description of the dataset files:
 - `route_2_xIDs.csv` is a mapping from trip ID to its nodes' representations from `nodes_features.csv`.
 
 - `extra_features.csv` is a .csv table $121557$ rows $\times$ $10$ columns. Each row is a vector of time and weather conditions for a trip. The row ID and the trip ID are the same. The list of features: clouds, snow, temperature, wind direction, wind speed,  pressure, dateID, week period, weekID, timeID.
+  
   - clouds -- from $0$ (clear) to $10$ (extremely cloudy).
   - snow -- from $0$ (clear) to $2$ (snowy).
   - temperature -- from $-31.0$ to $13.0$ Celsius degrees.
@@ -92,9 +114,11 @@ Here is the description of the dataset files:
   {4: {'train': array([     1,      2,      3, ...]),
   'valid': array([     4,      5,     6, ...])},
   ```
-  
+
 ### Omsk data
+
 The dataset is compressed into `OMSK_TRAIN_DATA.tar.gz`:
+
 - `IMG_EMBS.npz`
 - `edge_index.npz`
 - `extra_features.csv`
