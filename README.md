@@ -25,7 +25,7 @@ All other external libraries, which do not depend on `torch` and `CUDA` versions
 
 # Local tests
 
-Launch instructions are provided in the `README` file of the `/model` directory.
+Launch instructions are provided [in the README file](https://github.com/Eighonet/GCT-TTE/tree/main/model) of the `/model` directory.
 
 # Datasets
 
