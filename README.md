@@ -53,7 +53,7 @@ We provide two datasets corresponding to the cities of Abakan and Omsk. For each
 
 </td></tr> </table>
 
-Provided data could be used for research purposes only. If you want to incorporate the graph data in your study, please send request to semenova.bnl@gmail.com. The image extension can be accesed via [https://sc.link/Mw9kP](https://sc.link/Mw9kP) (Abakan) and [https://sc.link/5QWBq](https://sc.link/NL8lm) (Omsk).
+Provided data could be used for research purposes only. If you want to incorporate the graph data in your study, please send a request to semenova.bnl@gmail.com. The image extension can be accesed via [https://sc.link/Mw9kP](https://sc.link/Mw9kP) (Abakan) and [https://sc.link/5QWBq](https://sc.link/NL8lm) (Omsk).
 
 # License
 
