@@ -65,15 +65,22 @@ If you have some questions about the code, you are welcome to open an issue, I w
 
 # Citation
 
-To be updated.
-
 ```
-@misc{mashurov2023gcttte,
-      title={GCT-TTE: Graph Convolutional Transformer for Travel Time Estimation}, 
-      author={Vladimir Mashurov and Vaagn Chopurian and Vadim Porvatov and Arseny Ivanov and Natalia Semenova},
-      year={2023},
-      eprint={2306.04324},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI}
+﻿@Article{Mashurov2024,
+        author={Mashurov, Vladimir
+        and Chopuryan, Vaagn
+        and Porvatov, Vadim
+        and Ivanov, Arseny
+        and Semenova, Natalia},
+        title={Gct-TTE: graph convolutional transformer for travel time estimation},
+        journal={Journal of Big Data},
+        year={2024},
+        month={Jan},
+        day={13},
+        volume={11},
+        number={1},
+        pages={15},
+        doi={10.1186/s40537-023-00841-1},
+        url={https://doi.org/10.1186/s40537-023-00841-1}
 }
 ```
