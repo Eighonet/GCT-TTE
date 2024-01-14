@@ -67,12 +67,8 @@ If you have some questions about the code, you are welcome to open an issue, I w
 
 ```
 ﻿@Article{Mashurov2024,
-        author={Mashurov, Vladimir
-        and Chopuryan, Vaagn
-        and Porvatov, Vadim
-        and Ivanov, Arseny
-        and Semenova, Natalia},
-        title={Gct-TTE: graph convolutional transformer for travel time estimation},
+        author={Mashurov, Vladimir and Chopuryan, Vaagn and Porvatov, Vadim and Ivanov, Arseny and Semenova, Natalia},
+        title={GCT-TTE: graph convolutional transformer for travel time estimation},
         journal={Journal of Big Data},
         year={2024},
         month={Jan},
